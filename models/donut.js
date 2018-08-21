@@ -11,8 +11,8 @@ var donut = {
             cb(res);
         })
     },
-    updateOne: function(columnOne, valueOne, columnTwo, valueTwo, condition, cb) {
-        orm.updateOne("donuts", columnOne, valueOne, columnTwo, valueTwo, condition, function(res) {
+    updateOne: function(valueOne, condition, cb) {
+        orm.updateOne("donuts", valueOne, condition, function(res) {
             cb(res);
         })
     }

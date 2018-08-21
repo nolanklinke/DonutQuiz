@@ -1,3 +1,4 @@
+var connection = require ('./connection.js');
 
 var orm = {
     selectAll: function(tableName, cb) {
@@ -11,7 +12,7 @@ var orm = {
         });
     },
     insertOne: function(tableName, valueOne, valueTwo, cb) {
-        var queryString = "INSERT INTO ?? VALUES (?,?)";
+        var queryString = "INSERT INTO ?? (??) VALUES (?)";
         connection.query(queryString, [tableName, valueOne, valueTwo], function(err, result) {
             if (err) {
                 throw err;
@@ -20,9 +21,9 @@ var orm = {
             cb(result);
         });
     },
-    updateOne: function(tableName, columnOne, valueOne, columnTwo, valueTwo, condition ,cb) {
-        var queryString = "UPDATE ?? SET ?? = ?, ?? = ?, WHERE ??";
-        connection.query(queryString, [tableName, columnOne, valueOne, columnTwo, valueTwo, condition], function(err, result) {
+    updateOne: function(tableName, valueOne, condition, cb) {
+        var queryString = "UPDATE ?? SET ? WHERE ?";
+        connection.query(queryString, [tableName, valueOne, condition], function(err, result) {
             if (err) {
                 throw err;
             }

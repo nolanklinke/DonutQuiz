@@ -1,0 +1,42 @@
+<h1>Eat-Da-Donut!</h1>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        {{#each donuts}}
+          {{#unless this.devoured}}
+            <div>
+              <form action="/donuts/{{this.id}}" method="POST">
+                <button type="submit" class='donutAvailable'> {{this.donut_name}}</button>
+              </form>
+            </div>
+          {{/unless}}
+        {{/each}}
+      </div>
+
+      <div class="col s6">
+        {{#each donuts}}
+          {{#if this.devoured}}
+            <div class='donutEaten'>
+              <div>
+                {{this.donut_name}}
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</main>
+
+<h2>Add A Donut Option</h2>
+
+<div class="row">
+  <div class="col s12">
+    <form action="/donuts" method="POST">
+      <input type="text" id="name" name="donut_name" placeholder="Uber Delicious Donut">
+      <button type="submit" class="addDonutButton">Add The Donut</button>
+    </form>
+  </div>
+</div>
